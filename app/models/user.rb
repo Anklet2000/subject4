@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :authentication_keys => [:name]
   
   has_many :books, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   validates :name, uniqueness: true, length: {in: 2..20}
   validates :introduction, length: { maximum: 50}
